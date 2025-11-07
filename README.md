@@ -18,7 +18,7 @@ El estudiantado aplicará conocimientos básicos de la estructura de base de dat
 ## Temario 
 
 - [1.Introducción a base de datos](./1.Introduccion.md)
-- [2.Modelo relacional](./2.ModeloRelacional.md)
+- [2.Modelado](./2.Modelado.md)
 - [3.Lenguaje estructurado de consulta SQL](./3.SQL.md)
 - [4.Almacén de datos]()
 - [5.Software de diseño de base de datos]()
