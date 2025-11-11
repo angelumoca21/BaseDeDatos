@@ -13,7 +13,7 @@ El estudiantado aplicará conocimientos básicos de la estructura de base de dat
 
 ## Archivos compartidos
 
-- [Archivos realizados en clase]()
+- [Archivos realizados en clase](https://github.com/angelumoca21/BaseDeDatos/tree/main/ArchivosHechosEnClase)
 
 ## Temario 
 
