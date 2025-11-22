@@ -1,0 +1,7 @@
+Autor: id_autor, nombre_autor
+Libro: id_libro, ISBN, titulo, editorial, año
+Ejemplar: id_ejemplar, id_libro, numeroEjemplar, estado, ubicación
+Usuario: id_usuario, nombre, email, teléfono, fecha_registro
+
+EjemplarUsuario: id_préstamo, id_ejemplar, id_usuario, fecha_salida, fechaDevoluciónPrevista, fechaDevolución, estado
+LibroAutor: id_libro, id_autor
