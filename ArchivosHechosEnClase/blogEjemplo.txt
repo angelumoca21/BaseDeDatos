@@ -1,5 +1,5 @@
 Ejemplo: Realizar el diseño conceptual de un blog donde los usuarios realizan la publicación de posts, además de que pueden interactuar entre ellos comentando sus posts. Cada post creado debe pertenecer a una única categoría y deberá contener mínimo una etiqueta de indexación.
-
+https://docs.google.com/spreadsheets/d/1-jNRFbmCtB3AUU8LX23PSKKbKzsDFk7O/edit?usp=sharing&ouid=100169717584729868158&rtpof=true&sd=true
 Blog
 
 Entidades:

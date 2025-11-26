@@ -1,5 +1,13 @@
-/* CREATE TABLE Usuario(
-    idUsuario int Primary Key auto_increment,
+# Creación de base de datos
+CREATE DATABASE blog;
+
+# Seleccionar base de datos
+USE blog;
+
+# Creación de tablas 
+## Usuario
+CREATE TABLE Usuario(
+    idUsuario INT PRIMARY KEY AUTO_INCREMENT,
     nombrePila VARCHAR(30) NOT NULL,
     apellidoPaterno VARCHAR(20) NOT NULL,
     apellidoMaterno VARCHAR(20),
@@ -8,70 +16,74 @@
     fechaNacimiento DATE NOT NULL
 );
 
-CREATE TABLE Comentario(
-    idComentario int Primary Key auto_increment,
-    contenido VARCHAR(75) NOT NULL
-);
-
-DROP TABLE Comenta;
-
-ALTER TABLE comentario ADD idUsuario INT NOT NULL;
-
-ALTER TABLE comentario DROP COLUMN fecha;
-
-ALTER TABLE Comentario 
-ADD CONSTRAINT usuarioComentarioFK
-FOREIGN KEY (idUsuario) REFERENCES
-Usuario(idUsuario);
-
+## Categoria
 CREATE TABLE Categoria(
-    idCategoria int Primary Key auto_increment,
-    nombre VARCHAR(20) NOT NULL
-);
-*/
-
-CREATE TABLE Categoria(
-    idCategoria int Primary Key auto_increment,
+    idCategoria INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(20) NOT NULL
 );
 
+## Post
 create table Post(
-	idPost int Primary Key auto_increment,
-    Contenido varchar(75) not null,
-    Titulo varchar(25) not null,
-    Fecha date not null,
-    idUsuario int not null,
+	idPost INT PRIMARY KEY AUTO_INCREMENT,
+    contenido text NOT NULL,
+    titulo varchar(25) not null,
+    fecha date not null,
+    idUsuario INT NOT NULL,
     FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
-    idCategoria int not null,
+    idCategoria INT NOT NULL,
     FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria)
 );
 
-ALTER TABLE comentario ADD idPost INT NOT NULL;
+## Comentario
+CREATE TABLE Comentario(
+    idComentario INT PRIMARY KEY AUTO_INCREMENT,
+    contenido TEXT NOT NULL,
+    fecha DATE NOT NULL,
+    idUsuario INT NOT NULL,
+    idPost INT NOT NULL,
+    FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY (idPost) REFERENCES Post(idPost)
+);
+
+/*
+CREATE TABLE Comentario(
+    idComentario INT PRIMARY KEY AUTO_INCREMENT,
+    contenido TEXT NOT NULL,
+    fecha DATE NOT NULL
+);
+ALTER TABLE Comentario ADD idUsuario INT NOT NULL;
+ALTER TABLE Comentario ADD idPost INT NOT NULL;
 ALTER TABLE Comentario 
 ADD CONSTRAINT usuarioPostFK
-FOREIGN KEY (idPost) REFERENCES Post(idPost);
-
-
-
-ALTER TABLE Comentario 
+	FOREIGN KEY (idPost) REFERENCES Post(idPost);
+ALTER TABLE Comentario
 ADD CONSTRAINT usuarioComentarioFK
-FOREIGN KEY (idUsuario) REFERENCES
-Usuario(idUsuario);
+	FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario);
+*/
 
+## Etiqueta
 CREATE TABLE Etiqueta(
-	IdEtiqueta int not null,
-    nombre varchar(20) not null
+	IdEtiqueta INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(20) NOT NULL
 );
 
-ALTER TABLE Etiqueta DROP COLUMN IdEtiqueta;
-ALTER TABLE Etiqueta ADD IdEtiqueta INT PRIMARY KEY AUTO_INCREMENT;
-
+## PostEtiqueta
 CREATE TABLE PostEtiqueta(
-	idPost int not null,
-    IdEtiqueta int not null,
-    
-    constraint fk_postEti_post
-		foreign key (idPost) references Post(idPost),
-	constraint fk_postEti_etiqueta
-		foreign key (IdEtiqueta) references Etiqueta(IdEtiqueta)
+    idPost INT NOT NULL,
+    idEtiqueta INT NOT NULL,
+    PRIMARY KEY (idPost, idEtiqueta),
+    FOREIGN KEY (idPost) REFERENCES Post(idPost),
+    FOREIGN KEY (idEtiqueta) REFERENCES Etiqueta(idEtiqueta)
 );
+
+/*
+CREATE TABLE PostEtiqueta(
+    idPostEtiqueta INT PRIMARY KEY AUTO_INCREMENT,
+    idPost INT NOT NULL,
+    IdEtiqueta INT NOT NULL,
+    CONSTRAINT fk_postEti_post
+        FOREIGN KEY (idPost) REFERENCES Post(idPost),
+    CONSTRAINT fk_postEti_etiqueta
+        FOREIGN KEY (IdEtiqueta) REFERENCES Etiqueta(IdEtiqueta)
+);
+*/
