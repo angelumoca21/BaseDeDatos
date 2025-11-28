@@ -1,3 +1,8 @@
+MODIFY - CAMBIAR TIPO DE DATO Y RESTRICCIONES
+RENAME
+SHOW TABLES;
+DESCRIBE Usuario;
+
 INSERT INTO Usuario (nombrePila, apellidoPaterno, correoElectronico, fechaNacimiento)
 VALUES 
 ('Ana', 'López', 'ana@test.com', '1990-02-10'),

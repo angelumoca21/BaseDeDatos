@@ -7,40 +7,42 @@ USE blog;
 # Creación de tablas 
 ## Usuario
 CREATE TABLE Usuario(
-    idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+    idUsuario INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     nombrePila VARCHAR(30) NOT NULL,
     apellidoPaterno VARCHAR(20) NOT NULL,
     apellidoMaterno VARCHAR(20),
     telefono CHAR(10),
     correoElectronico VARCHAR(30) NOT NULL UNIQUE,
-    fechaNacimiento DATE NOT NULL
+    fechaNacimiento DATE NOT NULL,
+    fechaDeInsercion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fechaDeActualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
 );
 
 ## Categoria
 CREATE TABLE Categoria(
-    idCategoria INT PRIMARY KEY AUTO_INCREMENT,
+    idCategoria INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(20) NOT NULL
 );
 
 ## Post
 create table Post(
-	idPost INT PRIMARY KEY AUTO_INCREMENT,
+	idPost INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     contenido text NOT NULL,
     titulo varchar(25) not null,
     fecha date not null,
-    idUsuario INT NOT NULL,
+    idUsuario INT UNSIGNED NOT NULL,
     FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
-    idCategoria INT NOT NULL,
+    idCategoria INT UNSIGNED NOT NULL,
     FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria)
 );
 
 ## Comentario
 CREATE TABLE Comentario(
-    idComentario INT PRIMARY KEY AUTO_INCREMENT,
+    idComentario INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     contenido TEXT NOT NULL,
     fecha DATE NOT NULL,
-    idUsuario INT NOT NULL,
-    idPost INT NOT NULL,
+    idUsuario INT UNSIGNED NOT NULL,
+    idPost INT UNSIGNED NOT NULL,
     FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
     FOREIGN KEY (idPost) REFERENCES Post(idPost)
 );
@@ -63,14 +65,14 @@ ADD CONSTRAINT usuarioComentarioFK
 
 ## Etiqueta
 CREATE TABLE Etiqueta(
-	IdEtiqueta INT PRIMARY KEY AUTO_INCREMENT,
+	IdEtiqueta INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(20) NOT NULL
 );
 
 ## PostEtiqueta
 CREATE TABLE PostEtiqueta(
-    idPost INT NOT NULL,
-    idEtiqueta INT NOT NULL,
+    idPost INT UNSIGNED NOT NULL,
+    idEtiqueta INT UNSIGNED NOT NULL,
     PRIMARY KEY (idPost, idEtiqueta),
     FOREIGN KEY (idPost) REFERENCES Post(idPost),
     FOREIGN KEY (idEtiqueta) REFERENCES Etiqueta(idEtiqueta)
