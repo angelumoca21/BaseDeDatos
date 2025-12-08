@@ -21,7 +21,9 @@ CREATE TABLE Usuario(
 ## Categoria
 CREATE TABLE Categoria(
     idCategoria INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(20) NOT NULL
+    nombre VARCHAR(20) NOT NULL,
+    fechaDeInsercion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fechaDeActualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
 );
 
 ## Post
@@ -33,7 +35,9 @@ create table Post(
     idUsuario INT UNSIGNED NOT NULL,
     FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
     idCategoria INT UNSIGNED NOT NULL,
-    FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria)
+    FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria),
+    fechaDeInsercion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fechaDeActualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 ## Comentario
@@ -44,7 +48,9 @@ CREATE TABLE Comentario(
     idUsuario INT UNSIGNED NOT NULL,
     idPost INT UNSIGNED NOT NULL,
     FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
-    FOREIGN KEY (idPost) REFERENCES Post(idPost)
+    FOREIGN KEY (idPost) REFERENCES Post(idPost),
+    fechaDeInsercion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fechaDeActualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
 );
 
 /*
@@ -66,7 +72,9 @@ ADD CONSTRAINT usuarioComentarioFK
 ## Etiqueta
 CREATE TABLE Etiqueta(
 	IdEtiqueta INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(20) NOT NULL
+    nombre VARCHAR(20) NOT NULL,
+    fechaDeInsercion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fechaDeActualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
 );
 
 ## PostEtiqueta
@@ -80,7 +88,7 @@ CREATE TABLE PostEtiqueta(
 
 /*
 CREATE TABLE PostEtiqueta(
-    idPostEtiqueta INT PRIMARY KEY AUTO_INCREMENT,
+    idPostEtiqueta INT,
     idPost INT NOT NULL,
     IdEtiqueta INT NOT NULL,
     CONSTRAINT fk_postEti_post
