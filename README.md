@@ -22,7 +22,7 @@ El estudiantado aplicará conocimientos básicos de la estructura de base de dat
 - [3.Lenguaje estructurado de consulta SQL](./3.SQL.md)
 - [4.Almacén de datos](./4.AlmacenDeDatos.md)
 - [5.Software de diseño de base de datos](./5.SoftwareDeDiseñoDeBaseDeDatos.md)
+- [8.Consultas en SQL](./8.ConsultasSQL.md)
 - [6.Funciones en SQL]()
 - [7.Triggers en SQL]()
-- [8.Consultas en SQL]()
 - 9.Proyecto final
